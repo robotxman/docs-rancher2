@@ -122,7 +122,7 @@ port_list='
 
 for port in $port_list;
 do
-  pid=`netstat -atlnup | grep $port | awk '{print $7}' | awk -F '/' '{print $1}' | grep -v - | sort -rnk2 | uniq`
+  pid=`netstat -tlnup | grep -w $port | awk '{print $7}' | awk -F '/' '{print $1}' | grep -v - | sort -rnk2 | uniq`
   if [[ -n $pid ]]; then
     kill -9 $pid
   fi
